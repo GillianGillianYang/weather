@@ -5,7 +5,7 @@ export default class SearchBar extends Component{
         super(props)
 
         this.state = {term:''};
-        this.onInputChange = this.onInputChange.bind(this);
+        this.onInputChange = this.onInputChange.bind(this); 
     }
 
     onInputChange(event){ // Event -> vanilla.js
@@ -14,13 +14,18 @@ export default class SearchBar extends Component{
         this.setState({term:event.target.value}); //"this" will not be this search component ; it will refer other . 
         
     }
+    onFormSubmit(event){
+        event.preventDefault();
+
+        //we need to go and fetch weather data
+    }
 
     //onChange={this.onInputChange} //flat arrow function 
     //it is a  callbakc function // but the "this will be mystery context "
 
     render(){
         return(
-           <form className='input-group'>
+           <form onSubmit={this.onFormSubmit} className='input-group'>
                <input
                     placeholder='Get a 5-day forecast in your favorite city' 
                     className='form-control' 
