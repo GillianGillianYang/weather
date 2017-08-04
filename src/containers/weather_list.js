@@ -2,7 +2,19 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 //export default 
+
+
+
 class WeatherList extends Component{
+
+    renderWeather(cityData){  //??? why not declare function 
+        const name = cityData.city.name;
+    return(
+        <tr key={name}>
+            <td>{name} </td>  
+        </tr>    
+    );
+    }
 
     // constructor ?? 
     render(){
@@ -17,6 +29,7 @@ class WeatherList extends Component{
                     </tr>   
                 </thead>
                 <tbody>
+                    {this.props.weather.map(this.renderWeather)}
                 </tbody>    
             </table> 
         );
