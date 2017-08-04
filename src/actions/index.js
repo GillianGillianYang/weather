@@ -10,7 +10,7 @@ export function fetchWeather(city){
     //$.get(url); --> axios
     const request = axios.get(url); // return Promise
 
-    console.log("Request",request);
+   // console.log("Request",request);
 
     return(
         {
