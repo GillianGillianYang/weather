@@ -1,16 +1,26 @@
 import React from 'react'
-import { Sparklines, SparklinesLine } from 'react-sparklines';
+import _ from 'lodash';
+import { Sparklines, SparklinesLine ,SparkLinesReferenceLine} from 'react-sparklines';
 
-//{props.color}
+
 //why wrap in <div> ??
+
+function average(data){
+    return _.round(_.sum(data)/data.length);
+}
+
 export default (props) => {
    // console.log(props.data);
     return
     (
             <div>
                 <Sparklines height={120}  width={180} data={props.data} >
-                    <SparklinesLine color='red' />
+                    <SparklinesLine color={props.color} />
+                    <SparkLinesReferenceLine type='avg'/>
                 </Sparklines>    
-            </div> 
+        </div> 
+        <div>
+            {average(props.data) } {props.units}
+        </div>
     ); 
 }
