@@ -2,30 +2,29 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Sparklines, SparklinesLine} from 'react-sparklines';
 import Chart from '../components/chart';
+import _ from 'lodash'
+import GoogleMap from '../components/google_map'
 
 //export default 
 class WeatherList extends Component{
 
     renderWeather(cityData){  //??? why not declare function 
         const name = cityData.city.name;
-         const temps =  cityData.list.map(weather=> weather.main.temp);
+       //  const temps =  cityData.list.map(weather=> weather.main.temp);
    
-       // const temps =  _.map(cityData.list.map(weather=> weather.main.temp),(temp) => temp - 237 );
+        const temps =  _.map(cityData.list.map(weather=> weather.main.temp),(temp) => temp - 273 );
         const pressures =   cityData.list.map(weather=> weather.main.pressure);
         const humidities =   cityData.list.map(weather=> weather.main.humidity);
-
+        const {lon ,lat} =cityData.city.coord; //distructuring
         // ??? why data={} obj; color = string
-        //<td><Chart data={temps} color='orange' units="C"/> </td>
-        // <td><Chart data={pressures} color='red'units="hPa"/> </td>
-        // <td><Chart data={humidities} color='blue'units="%" /> </td>
-        // <td><Chart data={temps} color='orange' units="C"/> </td>   
-        console.log(Chart);
+      
+       // console.log(Chart);
     return(
         <tr key={name}>
-            <td>{name} </td> 
+            <td> <GoogleMap lon={lon} lat={lat}/> </td> 
              <td><Chart data={temps} color='orange' units="C"/> </td>
-        <td><Chart data={pressures} color='red'units="hPa"/> </td>
-        <td><Chart data={humidities} color='blue'units="%" /> </td>
+             <td><Chart data={pressures} color='red'units="hPa"/> </td>
+             <td><Chart data={humidities} color='blue'units="%" /> </td>
         </tr>    
     );
     }

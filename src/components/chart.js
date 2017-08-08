@@ -13,6 +13,7 @@ class Chart extends Component {
         return <div>
             <Sparklines height={120} width={180} data={this.props.data} >
                 <SparklinesLine color={this.props.color} />
+                <SparklinesReferenceLine type="avg" />
             </Sparklines>
             <div>{ average(this.props.data) } {this.props.units} </div>
         </div>;
